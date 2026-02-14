@@ -1,7 +1,7 @@
 # UXDM PDF Destination
 
-[![Build Status](https://travis-ci.com/DivineOmega/uxdm-pdf-destination.svg?branch=master)](https://travis-ci.com/DivineOmega/uxdm-pdf-destination)
-[![Coverage Status](https://coveralls.io/repos/github/DivineOmega/uxdm-pdf-destination/badge.svg?branch=master)](https://coveralls.io/github/DivineOmega/uxdm-pdf-destination?branch=master)
+[![Build Status](https://travis-ci.com/Jord-JD/uxdm-pdf-destination.svg?branch=master)](https://travis-ci.com/Jord-JD/uxdm-pdf-destination)
+[![Coverage Status](https://coveralls.io/repos/github/Jord-JD/uxdm-pdf-destination/badge.svg?branch=master)](https://coveralls.io/github/Jord-JD/uxdm-pdf-destination?branch=master)
 
 The UXDM PDF destination allows you to migrate data into a PDF table.
 
@@ -11,7 +11,7 @@ To install the UXDM PDF destination, just run the following composer
 command.
 
 ```bash
-composer require divineomega/uxdm-pdf-destination
+composer require jord-jd/uxdm-pdf-destination
 ```
 
 ## Creating
