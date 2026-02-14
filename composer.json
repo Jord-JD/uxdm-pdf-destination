@@ -15,16 +15,16 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "dompdf/dompdf": "^2.0",
-    "jord-jd/uxdm": "^5.0"
+    "jord-jd/uxdm": "^6.0"
   },
   "autoload": {
     "psr-4": {
-      "DivineOmega\\uxdm\\": "src/"
+      "JordJD\\uxdm\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "DivineOmega\\uxdm\\TestClasses\\": "tests/Unit/includes/TestClasses/"
+      "JordJD\\uxdm\\TestClasses\\": "tests/Unit/includes/TestClasses/"
     }
   },
   "license": "LGPL-3.0-only",
