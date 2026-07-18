@@ -1,9 +1,8 @@
 # UXDM PDF Destination
 
-[![Build Status](https://travis-ci.com/Jord-JD/uxdm-pdf-destination.svg?branch=master)](https://travis-ci.com/Jord-JD/uxdm-pdf-destination)
-[![Coverage Status](https://coveralls.io/repos/github/Jord-JD/uxdm-pdf-destination/badge.svg?branch=master)](https://coveralls.io/github/Jord-JD/uxdm-pdf-destination?branch=master)
-
 The UXDM PDF destination allows you to migrate data into a PDF table.
+
+The first batch defines a stable column order. Missing values in later rows are rendered as blank cells, and field names and values are safely HTML-escaped before rendering.
 
 ## Installation
 

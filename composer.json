@@ -10,12 +10,12 @@
   ],
   "require-dev": {
     "fakerphp/faker": "^1.23",
-    "phpunit/phpunit": "^9.6"
+    "phpunit/phpunit": "^9.6 || ^12.0"
   },
   "require": {
     "php": "^7.4 || ^8.0",
-    "dompdf/dompdf": "^2.0",
-    "jord-jd/uxdm": "^6.0"
+    "dompdf/dompdf": "^2.0 || ^3.0",
+    "jord-jd/uxdm": "^6.2"
   },
   "autoload": {
     "psr-4": {
@@ -33,7 +33,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "2.0-dev"
+      "dev-master": "2.1-dev"
     }
   }
 }

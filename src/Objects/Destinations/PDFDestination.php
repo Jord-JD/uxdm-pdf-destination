@@ -14,6 +14,7 @@ class PDFDestination implements DestinationInterface
     private $paperSize = 'A4';
     private $paperOrientation = 'portrait';
     private $rowNum = 0;
+    private $fieldNames = [];
 
     public function __construct($file)
     {
@@ -49,22 +50,20 @@ class PDFDestination implements DestinationInterface
     public function putDataRows(array $dataRows): void
     {
         foreach ($dataRows as $dataRow) {
-            $dataItems = $dataRow->getDataItems();
-
             if ($this->rowNum === 0) {
-                $fieldNames = [];
-                foreach ($dataItems as $dataItem) {
-                    $fieldNames[] = htmlentities($dataItem->fieldName);
+                foreach ($dataRow->getDataItems() as $dataItem) {
+                    $this->fieldNames[] = $dataItem->fieldName;
                 }
                 $this->html .= '<table class="uxdm-table">';
                 $this->html .= '<tr class="uxdm-fields"><th class="uxdm-field">';
-                $this->html .= implode('</th><th class="uxdm-field">', $fieldNames);
+                $this->html .= implode('</th><th class="uxdm-field">', array_map([$this, 'escapeHtml'], $this->fieldNames));
                 $this->html .= '</th></tr>';
             }
 
+            $row = $dataRow->toArray();
             $values = [];
-            foreach ($dataItems as $dataItem) {
-                $values[] = htmlentities($dataItem->value);
+            foreach ($this->fieldNames as $fieldName) {
+                $values[] = $this->escapeHtml(array_key_exists($fieldName, $row) ? $row[$fieldName] : '');
             }
             $this->html .= '<tr class="uxdm-values"><td class="uxdm-value">';
             $this->html .= implode('</td><td class="uxdm-value">', $values);
@@ -89,6 +88,21 @@ class PDFDestination implements DestinationInterface
         $dompdf->render();
         $pdfContent = $dompdf->output();
 
-        file_put_contents($this->file, $pdfContent);
+        if (file_put_contents($this->file, $pdfContent) === false) {
+            throw new \RuntimeException('Unable to write PDF file: '.$this->file);
+        }
+    }
+
+    private function escapeHtml($value): string
+    {
+        if (is_array($value)) {
+            $encoded = json_encode($value);
+            $value = $encoded === false ? '' : $encoded;
+        } elseif (is_object($value) && !method_exists($value, '__toString')) {
+            $encoded = json_encode($value);
+            $value = $encoded === false ? '' : $encoded;
+        }
+
+        return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 }
